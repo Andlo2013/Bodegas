@@ -1,0 +1,44 @@
+﻿<dxr:DXRibbonWindow xmlns:Views="clr-namespace:AutomatizerSQL.Bodega.GUI.Views;assembly=AutomatizerSQL.Bodega.GUI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+        xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:local="clr-namespace:PruebaBodega"  x:Class="PruebaBodega.MainWindow"
+        Title="MainWindow" Height="450" Width="725"   >
+    <dxmvvm:Interaction.Behaviors>
+        <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding IniciarSubsidiosEditorCommand}"></dxmvvm:EventToCommand>
+        <dx:DXMessageBoxService/>
+    </dxmvvm:Interaction.Behaviors>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <dxr:RibbonControl Grid.Row="0" RibbonStyle="Office2010">
+            <dxr:RibbonControl.ToolbarItems>
+                <dxb:BarButtonItemLink BarItemName="newItem"/>
+            </dxr:RibbonControl.ToolbarItems>
+            <dxr:RibbonDefaultPageCategory>
+                <dxr:RibbonPage Caption="Home">
+                    <dxr:RibbonPageGroup Caption="File">
+                        <!--<dxb:BarButtonItem Content="MostrarTree"  Command="{Binding MostrarTreeCommand, UpdateSourceTrigger=PropertyChanged}" />
+                        <dxb:BarButtonItem Content="Iniciar Tree" Command="{Binding IniciarTreeCommand, UpdateSourceTrigger=PropertyChanged}"  ></dxb:BarButtonItem>-->
+                        <!--<dxb:BarButtonItem Content="" ></dxb:BarButtonItem>-->
+                    </dxr:RibbonPageGroup>
+                </dxr:RibbonPage>
+            </dxr:RibbonDefaultPageCategory>
+        </dxr:RibbonControl>
+        <!--<Views:TreeInventario Grid.Row="1"  Name="TreeInventario" DataContext="{Binding TreeInventarioViewModel, UpdateSourceTrigger=PropertyChanged }" MaxWidth="300" />-->
+        <Views:SubsidiosEditor 
+            Grid.Row="1" 
+            Name="SubsidiosEditor" 
+            DataContext="{Binding SubsidiosEditorViewModel, UpdateSourceTrigger=PropertyChanged}" />
+        <dxr:RibbonStatusBarControl Grid.Row="2">
+            
+        </dxr:RibbonStatusBarControl>
+    </Grid>
+</dxr:DXRibbonWindow>

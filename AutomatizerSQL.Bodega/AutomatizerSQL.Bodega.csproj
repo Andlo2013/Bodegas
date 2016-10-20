@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D22AB87E-1CA2-4AB2-B92A-BBB8EE31A5FF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AutomatizerSQL.Bodega</RootNamespace>
+    <AssemblyName>AutomatizerSQL.Bodega</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutomatizerSQL.Data.SqlClient">
+      <HintPath>..\..\AutomatizerSQL.Data.SqlClient\AutomatizerSQL.Data.SqlClient\bin\Debug\AutomatizerSQL.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="ClsFunciones">
+      <HintPath>..\..\..\..\Diego Visual\ClsFunciones\ClsFunciones\ClsFunciones\bin\Debug\ClsFunciones.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AsignacionBodega.cs" />
+    <Compile Include="CodificacionInventario.cs" />
+    <Compile Include="DetalleCodificacionInventario.cs" />
+    <Compile Include="DetalleEgresoBodega.cs" />
+    <Compile Include="DetalleIngresoBodega.cs" />
+    <Compile Include="DetallesEnumerator.cs" />
+    <Compile Include="EgresoBodega.cs" />
+    <Compile Include="Estructuras.cs" />
+    <Compile Include="GrupoInventario.cs" />
+    <Compile Include="HelperBodega.cs" />
+    <Compile Include="IDetalle.cs" />
+    <Compile Include="IngresoBodega.cs" />
+    <Compile Include="ManejaDetalle.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlBridges\BridgeCollection.cs" />
+    <Compile Include="SqlBridges\BridgeDetalleIngresoBodega.cs" />
+    <Compile Include="SqlBridges\BridgeResumenItemAsignadoBodega.cs" />
+    <Compile Include="TipoTraspaso.cs" />
+    <Compile Include="TraspasoBodega.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AutomatizerSQL.Contabilidad\AutomatizerSQL.Contabilidad\AutomatizerSQL.Contabilidad.csproj">
+      <Project>{50803f61-72c0-4ed6-9fef-fa8551c26631}</Project>
+      <Name>AutomatizerSQL.Contabilidad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AutomatizerSQL.Core\AutomatizerSQL.Core\AutomatizerSQL.Core.csproj">
+      <Project>{a058d86a-39ad-430b-979c-fc5ce7d0da5d}</Project>
+      <Name>AutomatizerSQL.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AutomatizerSQL.Data\AutomatizerSQL.Data\AutomatizerSQL.Data.csproj">
+      <Project>{65BB8E99-89F5-4E0F-917F-0D4597914AB7}</Project>
+      <Name>AutomatizerSQL.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AutomatizerSQL.Utilidades\AutomatizerSQL.Utilidades.csproj">
+      <Project>{1459b917-13b1-4859-9291-d5116efa479f}</Project>
+      <Name>AutomatizerSQL.Utilidades</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

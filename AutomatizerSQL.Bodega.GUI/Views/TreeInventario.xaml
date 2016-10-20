@@ -1,0 +1,72 @@
+﻿<UserControl xmlns:GUI="clr-namespace:AutomatizerSQL.Bodega.GUI"  x:Class="AutomatizerSQL.Bodega.GUI.Views.TreeInventario"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:AutomatizerSQL.Bodega.GUI.ViewModels"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:common="clr-namespace:AutomatizerSQL.Bodega.GUI.Common"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             mc:Ignorable="d"
+             DataContext="{dxmvvm:ViewModelSource Type=ViewModels:TreeInventarioViewModel}"
+             d:DesignHeight="480" d:DesignWidth="240">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
+        <dxmvvm:BooleanToVisibilityConverter Inverse="True" x:Key="NegationBooleanToVisibilityConverter" ></dxmvvm:BooleanToVisibilityConverter>
+        
+    </UserControl.Resources>
+    <!--<dxmvvm:Interaction.Behaviors>
+        <dxmvvm:EventToCommand EventName="SelectedItemChanged" Command="{Binding TreeSelectedItemChangedCommand, UpdateSourceTrigger=PropertyChanged}"  PassEventArgsToCommand="True" ></dxmvvm:EventToCommand>
+    </dxmvvm:Interaction.Behaviors>-->
+    <Grid>
+        <GUI:GifImage x:Name="GifImage" GifSource="pack://application:,,,/AutomatizerSQL.Bodega.GUI;component/Resources/loading.gif" Stretch="None"  AutoStart="True"  Visibility="{Binding IsLoading, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <!--<Image Source="https://www.wordbee.com/Content/Wordbee/Images/loading1.gif"  />-->
+        <!--<StackPanel Visibility="{Binding IsReady, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NegationBooleanToVisibilityConverter}}"  >
+        
+        </StackPanel>-->
+        <!--<TextBlock Visibility="{Binding IsReady, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NegationBooleanToVisibilityConverter}}"  >Arbol de Items</TextBlock>-->
+        <dxg:TreeListControl 
+            x:Name="TreeGrupos"   
+            Visibility="{Binding IsLoading, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NegationBooleanToVisibilityConverter}}" 
+            ItemsSource="{Binding NodosInventario, UpdateSourceTrigger=PropertyChanged}" 
+            IsVisibleChanged="TreeGrupos_IsVisibleChanged"     >
+            <!--<dxmvvm:Interaction.Behaviors>
+                <dxmvvm:EventToCommand EventName="SelectedItemChanged" Command="{Binding TreeSelectedItemChangedCommand, UpdateSourceTrigger=PropertyChanged}"  CommandParameter="{Binding ElementName=TreeGrupos, Path=SelectedItem}"  ></dxmvvm:EventToCommand>
+                
+            </dxmvvm:Interaction.Behaviors>-->
+            <dxg:TreeListControl.Columns>
+                <dxg:TreeListColumn Header="Codigo" FieldName="Id"  AllowEditing="False" Visible="False"  />
+                <dxg:TreeListColumn Header="Grupo" FieldName="Nombre" AllowEditing="False"  Width="Auto" MinWidth="280"/>
+                <dxg:TreeListColumn Header="Tiene Existencia" FieldName="TieneExistencia" AllowEditing="False" Width="Auto" Visible="False"></dxg:TreeListColumn>
+            </dxg:TreeListControl.Columns>
+            <dxg:TreeListControl.View>
+                <dxg:TreeListView 
+                                  
+                                   
+                                  AutoWidth="True" 
+                                  AllowEditing="False" 
+                                  KeyFieldName="Id" 
+                                  ParentFieldName="ParentId"  
+                                  ShowExpandButtons="True"      
+                                  TreeDerivationMode="Selfreference"
+                                  AllowCascadeUpdate="True"
+                                  AllowPerPixelScrolling="True"  
+                                  ShowNodeImages="True" 
+                                  ImageFieldName="NodeImage"
+                                  NavigationStyle="Row"
+                                  
+                    >
+                    
+                    <dxmvvm:Interaction.Behaviors>
+                        <dxmvvm:EventToCommand EventName="NodeExpanding" Command="{Binding TreeNodeExpandingCommand}" PassEventArgsToCommand="True"  >
+                            <!--<dxmvvm:EventToCommand.EventArgsConverter>
+                                <common:ListBoxNodeExpandinEventArgsConverter/>
+                            </dxmvvm:EventToCommand.EventArgsConverter>-->
+                        </dxmvvm:EventToCommand>
+                        <dxmvvm:EventToCommand EventName="FocusedRowChanged" Command="{Binding TreeSelectedItemChangedCommand}" PassEventArgsToCommand="True" ></dxmvvm:EventToCommand>
+                    </dxmvvm:Interaction.Behaviors>
+                </dxg:TreeListView>
+            </dxg:TreeListControl.View>
+        </dxg:TreeListControl>
+    </Grid>
+</UserControl>
